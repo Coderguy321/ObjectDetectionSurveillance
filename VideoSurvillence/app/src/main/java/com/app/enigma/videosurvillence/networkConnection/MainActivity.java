@@ -58,13 +58,17 @@ public class MainActivity extends AppCompatActivity {
 //        ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 1000000000);
 //        toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP,10000000);
 
-        try {
-            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-            r.play();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100000);
+        toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 1600000);
+
+
+//        try {
+//            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
+//            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
+//            r.play();
+//        } catch (Exception e) {
+//            e.printStackTrace();
+//        }
         prepareDummyCameraData();
 
 //        if (API_KEY.isEmpty()) {
@@ -98,8 +102,10 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void prepareDummyCameraData(){
-        Camera camera = new Camera("CSE dept Camera");
-        cameraList.add(camera);
+        Camera camera1 = new Camera("CSE dept Camera");
+        Camera camera2 = new Camera("Metta Parking Camera");
+        cameraList.add(camera1);
+        cameraList.add(camera2);
 
     }
 
