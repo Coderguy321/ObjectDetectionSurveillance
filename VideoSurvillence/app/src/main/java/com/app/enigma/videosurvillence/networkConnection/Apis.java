@@ -1,5 +1,6 @@
 package com.app.enigma.videosurvillence.networkConnection;
 
+import com.app.enigma.videosurvillence.Model.CameraStatus;
 import com.app.enigma.videosurvillence.Model.Log;
 import com.google.gson.JsonObject;
 
@@ -16,5 +17,10 @@ public interface Apis {
     interface getLogName {
         @GET("surveillance/name/")
         Call<Log> getLogName();
+
+    }
+    interface getAlertStatus {
+        @GET("status/")
+        Call<CameraStatus> getAlertStatus();
     }
 }

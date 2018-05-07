@@ -1,5 +1,6 @@
 package com.app.enigma.videosurvillence.networkConnection;
 
+import android.content.Intent;
 import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 import com.app.enigma.videosurvillence.Adapter.CameraAdapter;
 import com.app.enigma.videosurvillence.Model.Camera;
 import com.app.enigma.videosurvillence.R;
+import com.app.enigma.videosurvillence.services.AlertStatusPingService;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +56,8 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter);
 
-
+        System.out.println("Triggering service");
+        startService(new Intent(this, AlertStatusPingService.class));
 //        ToneGenerator toneGen1 = new ToneGenerator(AudioManager.STREAM_MUSIC, 1000000000);
 //        toneGen1.startTone(ToneGenerator.TONE_CDMA_PIP,10000000);
 

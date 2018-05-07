@@ -25,7 +25,11 @@
         </activity>
         <activity
             android:name=".networkConnection.MainActivity"
-            android:label="@string/title_activity_login"></activity>
+            android:label="@string/title_activity_login" />
+
+        <service
+            android:name=".services.AlertStatusPingService"
+            android:exported="false"></service>
     </application>
 
 </manifest>
