@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class ApiClient {
 
-    public static final String BASE_URL = "http://api.themoviedb.org/3/";
+    public static final String BASE_URL = "http://127.0.0.1:8000/surveillance/";
     private static Retrofit retrofit = null;
 
 

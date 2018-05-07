@@ -11,8 +11,8 @@ import retrofit2.http.Query;
 import com.app.enigma.videosurvillence.Model.Log;
 
 public interface ApiInterface {
-    @GET("movie/top_rated")
-    Call<Log> getTopRatedMovies(@Query("api_key") String apiKey);
+    @GET("name/")
+    Call<Log> getLogName();
 
 //    @GET("movie/{id}")
 //    Call<MoviesResponse> getMovieDetails(@Path("id") int id, @Query("api_key") String apiKey);

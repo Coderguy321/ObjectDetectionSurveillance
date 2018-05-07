@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
  */
 
 public class Log {
-    @SerializedName("poster_path")
+    @SerializedName("name")
     private String Name;
 
     public String getName() {
