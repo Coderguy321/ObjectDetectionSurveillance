@@ -1,6 +1,9 @@
 package com.app.enigma.videosurvillence.networkConnection;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.AnimationDrawable;
+import android.graphics.drawable.ColorDrawable;
 import android.media.AudioManager;
 import android.media.Ringtone;
 import android.media.RingtoneManager;
@@ -8,6 +11,7 @@ import android.media.ToneGenerator;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Build;
+import android.os.Handler;
 import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
@@ -16,6 +20,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -34,6 +39,7 @@ public class MainActivity extends AppCompatActivity {
     private List<Camera> cameraList = new ArrayList<>();
     private RecyclerView recyclerView;
     private CameraAdapter mAdapter;
+
 
     private Service mService;
     TextView testing;
@@ -64,15 +70,8 @@ public class MainActivity extends AppCompatActivity {
         ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100000);
         toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 1600000);
 
-
-//        try {
-//            Uri notification = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
-//            Ringtone r = RingtoneManager.getRingtone(getApplicationContext(), notification);
-//            r.play();
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
         prepareDummyCameraData();
+
 
 //        if (API_KEY.isEmpty()) {
 //            Toast.makeText(getApplicationContext(), "Please obtain your API KEY first from themoviedb.org", Toast.LENGTH_LONG).show();
