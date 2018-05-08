@@ -1,4 +1,5 @@
 package com.app.enigma.videosurvillence.networkConnection;
+import com.app.enigma.videosurvillence.Model.CameraStatus;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;
@@ -17,6 +18,27 @@ public class Service {
 
 //    public void sendPost(StatsRequest statsRequest, final ServiceCallback serviceCallback) {
 
+    public void pingAlertStatus() {
+        Retrofit retrofit = RetrofitBuilder.with().baseUrl(BASE_URL).build();
+        Apis.getAlertStatus alertStatus = (retrofit.create(Apis.getAlertStatus.class));
+        Call<com.app.enigma.videosurvillence.Model.CameraStatus> call = alertStatus.getAlertStatus();
+        call.enqueue(new Callback<com.app.enigma.videosurvillence.Model.CameraStatus>() {
+
+            @Override
+            public void onResponse(Call<CameraStatus> call, Response<CameraStatus> response) {
+                if (response.isSuccessful()) {
+                    System.out.println(response);
+                    // TODO: intent call
+                } else {
+                    // Todo: intent call
+                }
+            }
+
+            @Override
+            public void onFailure(Call<CameraStatus> call, Throwable t) {
+            }
+        });
+    }
 
     public void getName(final ServiceCallback serviceCallback) {
         Retrofit retrofit = RetrofitBuilder
