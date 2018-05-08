@@ -19,11 +19,17 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.app.enigma.videosurvillence.Adapter.CameraAdapter;
+import com.app.enigma.videosurvillence.Adapter.RecyclerTouchListener;
 import com.app.enigma.videosurvillence.Model.Camera;
 import com.app.enigma.videosurvillence.R;
 
@@ -37,8 +43,9 @@ public class MainActivity extends AppCompatActivity {
     private List<Camera> cameraList = new ArrayList<>();
     private RecyclerView recyclerView;
     private CameraAdapter mAdapter;
-
-
+    Button showPopupBtn, closePopupBtn;
+    PopupWindow popupWindow;
+    LinearLayout linearLayout1;
     private Service mService;
     TextView testing;
 
@@ -59,6 +66,43 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
         recyclerView.setAdapter(mAdapter);
+        recyclerView.addOnItemTouchListener(new RecyclerTouchListener(getApplicationContext(), recyclerView, new RecyclerTouchListener.ClickListener() {
+            @Override
+            public void onClick(View view, int position) {
+                Camera movie = cameraList.get(position);
+                Toast.makeText(getApplicationContext(), movie.getTitle() + " is selected!", Toast.LENGTH_SHORT).show();
+
+
+                //instantiate the popup.xml layout file
+                LayoutInflater layoutInflater = (LayoutInflater) getApplicationContext() .getSystemService(getApplicationContext() .LAYOUT_INFLATER_SERVICE);
+                View customView = layoutInflater.inflate(R.layout.popup_alert,null);
+
+                //closePopupBtn = (Button) customView.findViewById(R.id.closePopupBtn);
+
+                //instantiate popup window
+                popupWindow = new PopupWindow(customView, android.support.v7.widget.RecyclerView.LayoutParams.WRAP_CONTENT, android.support.v7.widget.RecyclerView.LayoutParams.WRAP_CONTENT);
+
+                //display the popup window
+                popupWindow.showAtLocation(linearLayout1, Gravity.CENTER, 0, 0);
+
+                //close the popup window on button click
+//                closePopupBtn.setOnClickListener(new View.OnClickListener() {
+//                    @Override
+//                    public void onClick(View v) {
+//                        popupWindow.dismiss();
+//                    }
+//                });
+            }
+
+            @Override
+            public void onLongClick(View view, int position) {
+
+            }
+        }));
+
+
+
+
 
         ToneGenerator toneG = new ToneGenerator(AudioManager.STREAM_ALARM, 100000);
         toneG.startTone(ToneGenerator.TONE_CDMA_ALERT_CALL_GUARD, 1600000);
